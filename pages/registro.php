@@ -1,10 +1,6 @@
 <?php
-// Incluir el archivo de configuración de la base de datos
 include_once '../db/config.php';
-
-// Verificar si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Recibir los datos del formulario
     $tipo_identificacion = $_POST['tipo_identificacion'];
     $numero_identificacion = $_POST['numero_identificacion'];
     $correo_electronico = $_POST['correo_electronico'];
@@ -24,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $estado_civil = $_POST['estado_civil'];
     $victima_conflicto_armado = $_POST['victima_conflicto_armado'];
 
-    // Insertar los datos en la base de datos
     $sql = "INSERT INTO Usuarios (tipo_identificacion, numero_identificacion, correo_electronico, nombres, apellidos, sexo, fecha_nacimiento, departamento_residencia, municipio_residencia, direccion_residencia, telefono_celular, contrasena, grupo_etnico, grupo_sisben, discapacidad, tipo_discapacidad, estado_civil, victima_conflicto_armado) VALUES ('$tipo_identificacion', '$numero_identificacion', '$correo_electronico', '$nombres', '$apellidos', '$sexo', '$fecha_nacimiento', '$departamento_residencia', '$municipio_residencia', '$direccion_residencia', '$telefono_celular', '$contrasena', '$grupo_etnico', '$grupo_sisben', '$discapacidad', '$tipo_discapacidad', '$estado_civil', '$victima_conflicto_armado')";
 
     if ($conn->query($sql) === TRUE) {
@@ -33,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    // Cerrar la conexión
+
     $conn->close();
 }
 ?>
