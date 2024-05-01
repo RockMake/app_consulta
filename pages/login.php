@@ -1,3 +1,27 @@
+<?php
+
+include_once '../db/config.php';
+
+
+$status_message = '';
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $correo_electronico = $_POST['correo_electronico'];
+    $contrasena = $_POST['contrasena'];
+
+    $sql = "SELECT * FROM Usuarios WHERE correo_electronico = '$correo_electronico' AND contrasena = '$contrasena'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $status_message = '<div class="alert alert-success" role="alert">Usuario autenticado correctamente</div>';
+    } else {
+        $status_message = '<div class="alert alert-danger" role="alert">Credenciales incorrectas</div>';
+    }
+    $conn->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,24 +32,24 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="style_login.css">
+    <link rel="stylesheet" href="/css/style_login.css">
 </head>
 
 <body>
     <div class="container">
-        <h1 class="text-center mb-4">¡Bienvenido a AppConsulta!</h1>
         <div class="card">
-            <h2 class="card-header">Iniciar Sesión</h2>
-            <form>
+            <h1 class="card-header">Iniciar Sesión</h1>
+            <form method="post" action="login.php">
+                <?php echo $status_message; ?> <!-- Mostrar el mensaje de estado aquí -->
                 <div class="form-group">
-                    <input type="email" class="form-control" placeholder="Correo Electrónico">
+                    <input type="email" class="form-control" name="correo_electronico" placeholder="Correo Electrónico">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Contraseña">
+                    <input type="password" class="form-control" name="contrasena" placeholder="Contraseña">
                 </div>
                 <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <p class="mt-3">¿No tienes una cuenta? <a href="registro.php">Regístrate aquí</a>.</p>
             </form>
-            <p class="mt-3">¿No tienes una cuenta? <a href="registro.php">Regístrate aquí</a>.</p>
         </div>
     </div>
 
