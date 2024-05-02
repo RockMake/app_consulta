@@ -1,4 +1,5 @@
 <?php
+$status_message2 = '';
 include_once '../db/config.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tipo_identificacion = $_POST['tipo_identificacion'];
@@ -23,13 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO Usuarios (tipo_identificacion, numero_identificacion, correo_electronico, nombres, apellidos, sexo, fecha_nacimiento, departamento_residencia, municipio_residencia, direccion_residencia, telefono_celular, contrasena, grupo_etnico, grupo_sisben, discapacidad, tipo_discapacidad, estado_civil, victima_conflicto_armado) VALUES ('$tipo_identificacion', '$numero_identificacion', '$correo_electronico', '$nombres', '$apellidos', '$sexo', '$fecha_nacimiento', '$departamento_residencia', '$municipio_residencia', '$direccion_residencia', '$telefono_celular', '$contrasena', '$grupo_etnico', '$grupo_sisben', '$discapacidad', '$tipo_discapacidad', '$estado_civil', '$victima_conflicto_armado')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Registro exitoso";
+        $status_message2 = '<div class="alert alert-success" role="alert">Usuario registrado correctamente</div>';
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        $status_message2 = '<div class="alert alert-danger" role="alert">Error al registrar el usuario: ' . $conn->error . '</div>';
     }
 
 
     $conn->close();
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Mostrar un mensaje de error si los campos están vacíos
+    $status_message2 = '<div class="alert alert-danger" role="alert">Por favor, complete todos los campos</div>';
 }
 ?>
 <!DOCTYPE html>
@@ -39,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - AppConsulta</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -49,6 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card">
             <h1 class="card-header">Formulario de Registro</h1>
             <form method="post" action="registro.php">
+                <?php echo $status_message2; ?>
                 <div class="form-group">
                     <select class="form-control" name="tipo_identificacion" title="Tipo de identificacion">
                         <option value="">Tipo de identificacion</option>
@@ -142,18 +147,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </div>
 
-    <script>
-        function mostrarTipoDiscapacidad() {
-            var seleccion = document.getElementById("discapacidad").value;
-            var tipoDiscapacidad = document.getElementById("tipoDiscapacidad");
 
-            if (seleccion === "si") {
-                tipoDiscapacidad.style.display = "block";
-            } else {
-                tipoDiscapacidad.style.display = "none";
-            }
-        }
-    </script>
+    <script src="../js/validacion_registro.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

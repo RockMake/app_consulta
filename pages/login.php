@@ -2,9 +2,7 @@
 
 include_once '../db/config.php';
 
-
 $status_message = '';
-
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -15,12 +13,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $status_message = '<div class="alert alert-success" role="alert">Usuario autenticado correctamente</div>';
+        $row = $result->fetch_assoc();
+        // Almacenar el número de identificación del usuario en una variable de sesión
+        session_start();
+        $_SESSION['numero_identificacion'] = $row['numero_identificacion'];
+        // Redirigir al usuario a la página resultado.php
+        header('Location: resultados.php');
+        exit();
     } else {
         $status_message = '<div class="alert alert-danger" role="alert">Credenciales incorrectas</div>';
     }
     $conn->close();
+} elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $status_message = '<div class="alert alert-danger" role="alert">Por favor, complete todos los campos</div>';
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -32,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Estilos personalizados -->
-    <link rel="stylesheet" href="/css/style_login.css">
+    <link rel="stylesheet" href="../css/style_login.css">
 </head>
 
 <body>
@@ -40,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="card">
             <h1 class="card-header">Iniciar Sesión</h1>
             <form method="post" action="login.php">
-                <?php echo $status_message; ?> <!-- Mostrar el mensaje de estado aquí -->
+                <?php echo $status_message; ?>
                 <div class="form-group">
                     <input type="email" class="form-control" name="correo_electronico" placeholder="Correo Electrónico">
                 </div>
