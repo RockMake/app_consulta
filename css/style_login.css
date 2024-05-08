@@ -1,53 +1,85 @@
-body {
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-h1,
-h2 {
-    text-align: center;
-    margin-top: 10px;
-    color: #333;
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #667eea, #b7a6f8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .container {
-    max-width: 400px;
-    margin: 100px auto;
+  max-width: 470px; 
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
 }
 
-.card {
-    border: none;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    border-radius: 10px;
-    background-color: #fafafa;
-}
 
 .card-header {
-    font-size: 24px;
-    margin-bottom: 30px;
-    color: #333;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 30px;
+  text-align: center;
 }
+
+
+.form-group {
+  margin-bottom: 20px;
+}
+
 
 .form-control {
-    border-color: #ccc;
+  width: 100%;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f5f5f5;
+  font-size: 16px;
 }
 
+
 .btn {
-    width: 100%;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 10px;
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
 .btn:hover {
-    background-color: #45a049;
+  background: linear-gradient(135deg, #5c6ed6, #6d3d92);
+}
+
+
+p {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-top: 20px;
+}
+
+a {
+  color: #764ba2;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #5c6ed6;
 }
