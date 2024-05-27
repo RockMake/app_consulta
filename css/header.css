@@ -1,0 +1,12 @@
+.navbar-custom {
+    background-color: transparent !important;
+    border: none;
+}
+
+.navbar-nav {
+    margin: auto;
+}
+
+li {
+    margin-top: 60px;
+}

@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,18 +6,20 @@
 
 
 body {
-  font-family: 'Montserrat', sans-serif;
-  background: linear-gradient(135deg, #667eea, #b7a6f8);
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to bottom right, #FF8000, #b7a6f8);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: #fff;
 }
 
 .container {
-  max-width: 470px; 
+  max-width: 470px;
   width: 100%;
-  background-color: #fff;
+  background-color: #ffffff74;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 40px;

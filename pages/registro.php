@@ -1,3 +1,4 @@
+<?php include '../includes/header.php'; ?>
 <?php
 $status_message2 = '';
 include_once '../db/config.php';
@@ -40,17 +41,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <title>Registro - AppConsulta</title>
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles_registro.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="container">
-        <div class="card">
+    <div class="container-lg">
+        <div class="card row">
             <h1 class="card-header">Formulario de Registro</h1>
             <!-- Comienzo del formulario -->
-            <form method="post" action="registro.php">
+            <form class="col" method="post" action="registro.php">
                 <?php echo $status_message2; ?>
                 <!-- Tipo de identificacion del usuario-->
                 <div class="form-group">
@@ -60,14 +61,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="ti">Tarjeta de identidad</option>
                         <option value="rc">Registro civil</option>
                         <option calue="ps">Pasaporte</option>
-                        
+
                     </select>
                 </div>
-                 <!-- Numero de identificacion del usuario-->
+                <!-- Numero de identificacion del usuario-->
                 <div class="form-group">
                     <input type="text" class="form-control" name="numero_identificacion" placeholder="Número de identificación">
                 </div>
-                 <!-- Correro del usuario -->
+                <!-- Correro del usuario -->
                 <div class="form-group">
                     <input type="email" class="form-control" name="correo_electronico" placeholder="Correo Electrónico">
                 </div>
@@ -93,42 +94,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <!-- Departamento de residencia-->
                 <div class="form-group">
-                <select class="form-control" name="departamento_residencia" title="Departamento de residencia">
-                <option value="">Departamento de residencia</option>
-                <option value="amazonas">Amazonas</option>
-                <option value="antioquia">Antioquia</option>
-                <option value="arauca">Arauca</option>
-                <option value="atlantico">Atlántico</option>
-                <option value="bolivar">Bolívar</option>
-                <option value="boyaca">Boyacá</option>
-                <option value="caldas">Caldas</option>
-                <option value="caqueta">Caquetá</option>
-                <option value="casanare">Casanare</option>
-                <option value="cauca">Cauca</option>
-                <option value="cesar">Cesar</option>
-                <option value="choco">Chocó</option>
-                <option value="cordoba">Córdoba</option>
-                <option value="cundinamarca">Cundinamarca</option>
-                <option value="guainia">Guainía</option>
-                <option value="guaviare">Guaviare</option>
-                <option value="huila">Huila</option>
-                <option value="laguajira">La Guajira</option>
-                <option value="magdalena">Magdalena</option>
-                <option value="meta">Meta</option>
-                <option value="narino">Nariño</option>
-                <option value="nortedesantander">Norte de Santander</option>
-                <option value="putumayo">Putumayo</option>
-                <option value="quindio">Quindío</option>
-                <option value="risaralda">Risaralda</option>
-                <option value="sanandresyprovidencia">San Andrés y Providencia</option>
-                <option value="santander">Santander</option>
-                <option value="sucre">Sucre</option>
-                <option value="tolima">Tolima</option>
-                <option value="valledelcauca">Valle del Cauca</option>
-                <option value="vaupes">Vaupés</option>
-                <option value="vichada">Vichada</option>
-            </select>
-                <!-- Municipio de Residencia -->
+                    <select class="form-control" name="departamento_residencia" title="Departamento de residencia">
+                        <option value="">Departamento de residencia</option>
+                        <option value="amazonas">Amazonas</option>
+                        <option value="antioquia">Antioquia</option>
+                        <option value="arauca">Arauca</option>
+                        <option value="atlantico">Atlántico</option>
+                        <option value="bolivar">Bolívar</option>
+                        <option value="boyaca">Boyacá</option>
+                        <option value="caldas">Caldas</option>
+                        <option value="caqueta">Caquetá</option>
+                        <option value="casanare">Casanare</option>
+                        <option value="cauca">Cauca</option>
+                        <option value="cesar">Cesar</option>
+                        <option value="choco">Chocó</option>
+                        <option value="cordoba">Córdoba</option>
+                        <option value="cundinamarca">Cundinamarca</option>
+                        <option value="guainia">Guainía</option>
+                        <option value="guaviare">Guaviare</option>
+                        <option value="huila">Huila</option>
+                        <option value="laguajira">La Guajira</option>
+                        <option value="magdalena">Magdalena</option>
+                        <option value="meta">Meta</option>
+                        <option value="narino">Nariño</option>
+                        <option value="nortedesantander">Norte de Santander</option>
+                        <option value="putumayo">Putumayo</option>
+                        <option value="quindio">Quindío</option>
+                        <option value="risaralda">Risaralda</option>
+                        <option value="sanandresyprovidencia">San Andrés y Providencia</option>
+                        <option value="santander">Santander</option>
+                        <option value="sucre">Sucre</option>
+                        <option value="tolima">Tolima</option>
+                        <option value="valledelcauca">Valle del Cauca</option>
+                        <option value="vaupes">Vaupés</option>
+                        <option value="vichada">Vichada</option>
+                    </select>
+                    <!-- Municipio de Residencia -->
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control" name="municipio_residencia" placeholder="Municipio de residencia">
@@ -228,8 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <script src="../js/validacion_registro.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>

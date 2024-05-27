@@ -1,3 +1,4 @@
+<?php include '../includes/header.php'; ?>
 <?php
 session_start();
 
@@ -22,7 +23,7 @@ if ($result->num_rows > 0) {
     $fecha_nacimiento = $row['fecha_nacimiento'];
     $grupo_sisben = $row['grupo_sisben'];
     $sexo = $row['sexo'];
-    $victima_conflicto_armado= $row['victima_conflicto_armado'];
+    $victima_conflicto_armado = $row['victima_conflicto_armado'];
     $discapacidad = $row['discapacidad'];
 
 
@@ -30,7 +31,7 @@ if ($result->num_rows > 0) {
     $fecha_actual = new DateTime();
     $fecha_nacimiento = new DateTime($fecha_nacimiento);
     $edad = $fecha_actual->diff($fecha_nacimiento)->y;
-    
+
 
     // Validación para Colombia Mayor
     $edad_minima_pension = 54; // Para mujeres
@@ -38,15 +39,15 @@ if ($result->num_rows > 0) {
         $edad_minima_pension = 59; // Para hombres
     }
 
-    $cumple_edad_colombia_mayor = ($edad >= ($edad_minima_pension - 3) && $grupo_sisben <='C1');
+    $cumple_edad_colombia_mayor = ($edad >= ($edad_minima_pension - 3) && $grupo_sisben <= 'C1');
 
     // Validación para Renta Joven
     $cumple_edad_renta_joven = ($edad >= 14 && $edad <= 28 && $grupo_sisben != '');
 
     // Validación para Renta Ciudadana
-    $cumple_renta_ciudadana = ($grupo_sisben >= 'A1' && $grupo_sisben <= 'B7'); 
+    $cumple_renta_ciudadana = ($grupo_sisben >= 'A1' && $grupo_sisben <= 'B7');
 
- 
+
 
 
     // Mostrar resultado para Colombia Mayor
@@ -54,9 +55,7 @@ if ($result->num_rows > 0) {
         $resultadosProgramas .= "<div class='alert alert-success' role='alert'>
 
                     ¡Felicidades! Cumple con la edad y con el Sisben ICV para el programa 'Colombia Mayor'.<br><br>
-
-                    
-
+            
                     Descripcion del programa:<br>
                     El Programa de Protección Social al Adulto Mayor “Colombia Mayor” busca aumentar la protección a los 
                     adultos mayores por medio de la entrega de un subsidio económico para aquellos que se encuentran 
@@ -161,7 +160,7 @@ if ($result->num_rows > 0) {
                 </div>";
     }
     // Mostrar resultado para el programa Asistencia Integral a las Víctimas del Conflicto Armado 
-    if($victima_conflicto_armado== 'si') {
+    if ($victima_conflicto_armado == 'si') {
         $resultadosProgramas .= "<div class='alert alert-success' role='alert'>
         ¡Felicidades! Cumple con los requisitos para el programa 'Asistencia Integral a las Víctimas del Conflicto Armado '.<br><br>
         
@@ -200,41 +199,40 @@ if ($result->num_rows > 0) {
 
         
     </div>";
-    }else{
+    } else {
         $resultadosProgramas .= "<div class='alert alert-danger' role='alert'>
         Lo sentimos, no cumple con los requisitos para el programa 'Asistencia Integral a las Víctimas del Conflicto Armado '.
     </div>";
     }
-
 }
 $conn->close();
 ?>
 <!DOCTYPE html>
+
 <head>
     <title>Resultados - AppConsulta</title>
     <link rel="stylesheet" href="../css/styles_resultado.css">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
         <h1>Programas de Beneficios</h1>
-        <?php echo $resultadosProgramas; ?>
         <!-- Preguntar a Duvan -->
         <div class="programs-info">
+            <?php echo $resultadosProgramas; ?>
         </div>
-         <!-- Redirigir al usuario a la página login.php -->
-        <button id="logout" class="btn btn-danger" >Cerrar Sesión</button>
-        
+        <!-- Redirigir al usuario a la página login.php -->
+        <button id="logout" class="btn btn-danger">Cerrar Sesión</button>
 
-        
+
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script>
         document.getElementById('logout').addEventListener('click', function() {
             window.location.href = 'login.php';
