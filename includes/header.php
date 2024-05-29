@@ -4,6 +4,7 @@
 <head>
     <title>App_consultas</title>
     <link rel="stylesheet" type="text/css" href="path/to/your/css/file.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -22,7 +23,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item text-center">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/appconsulta/index.php">Pagina de Inicio</a>
                         </li>
                         <li class="nav-item text-center">
                             <a class="nav-link" href="#">Sobre nosotros</a>
